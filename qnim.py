@@ -108,16 +108,14 @@ def diffusion_operation(qc, address, flag, removable_pile):
 
     
 def qc_process(qc,objects_to_remove,address,flag,piles,removable_pile,removable_count):
+        
     if removable_count == 0:
         for i in range(len(removable_pile)):
-            if piles[i] != 0 and piles[i] != min(piles):
-                removable_pile[i] += 1
-                
+            removable_pile[i] = 1
+        removable_count = 4
+
     if removable_count == 4:
-        final_board = []
-        for i in range(len(removable_pile)):
-            final_board.append(piles[i]-removable_pile[i])
-        removable_pile[final_board.index(min(final_board))] = 0
+        removable_pile[removable_pile.index(min(removable_pile))] = 0
         removable_count = removable_count - 1
     
     qft_gate = custom_qft(3).to_gate()
