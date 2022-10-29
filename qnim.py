@@ -111,8 +111,9 @@ def qc_process(qc,objects_to_remove,address,flag,piles,removable_pile,removable_
         
     if removable_count == 0:
         for i in range(len(removable_pile)):
-            removable_pile[i] = 1
-        removable_count = 4
+            if piles[i] > 0:
+                removable_pile[i] = 1
+                removable_count += 1
 
     if removable_count == 4:
         removable_pile[removable_pile.index(min(removable_pile))] = 0
@@ -225,7 +226,6 @@ def get_quantum_move(piles, backend=None):
     print("Amount:", amount)
     # return board_choice,amount
     return counts
-
 
 
 
